@@ -16,3 +16,15 @@ export function validateRecipient(value) {
   if (isEmail(value)) return true
   return /^G[A-Z2-7]{55}$/.test(value)
 }
+
+/**
+ * Check that an amount does not exceed the available balance.
+ * @param {number|string} amount
+ * @param {number} balance
+ * @returns {boolean}
+ */
+export function isWithinBalance(amount, balance) {
+  const num = Number(amount)
+  if (!Number.isFinite(num)) return false
+  return num <= Number(balance)
+}
