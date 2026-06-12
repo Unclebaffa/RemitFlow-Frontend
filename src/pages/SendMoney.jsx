@@ -6,7 +6,7 @@ import QuoteCard from '../components/QuoteCard.jsx'
 import Button from '../components/Button.jsx'
 import ErrorMessage from '../components/ErrorMessage.jsx'
 import { buildQuote } from '../services/quote.js'
-import { isPositiveAmount, validateRecipient } from '../utils/validate.js'
+import { isPositiveAmount, validateRecipient, isWithinBalance } from '../utils/validate.js'
 import { useWallet } from '../hooks/useWallet.js'
 import { useTransfers } from '../hooks/useTransfers.js'
 import { DEFAULT_SOURCE, DEFAULT_DEST } from '../constants/currencies.js'
@@ -17,7 +17,7 @@ import './SendMoney.css'
  */
 export default function SendMoney() {
   const navigate = useNavigate()
-  const { isConnected, connect } = useWallet()
+  const { wallet, isConnected, connect } = useWallet()
   const { addTransfer } = useTransfers()
 
   const [recipient, setRecipient] = useState('')
@@ -46,6 +46,8 @@ export default function SendMoney() {
     }
     if (!isPositiveAmount(amount)) {
       next.amount = 'Enter an amount greater than zero.'
+    } else if (wallet && !isWithinBalance(amount, wallet.balance)) {
+      next.amount = 'Amount exceeds your wallet balance.'
     }
     if (from === to) {
       next.to = 'Source and destination must differ.'
