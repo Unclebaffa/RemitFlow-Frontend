@@ -1,0 +1,28 @@
+.tag {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.tag-neutral {
+  background: rgba(148, 163, 184, 0.15);
+  color: var(--color-muted);
+}
+
+.tag-info {
+  background: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+}
+
+.tag-success {
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+}
+
+.tag-warning {
+  background: rgba(234, 179, 8, 0.15);
+  color: #fde047;
+}
