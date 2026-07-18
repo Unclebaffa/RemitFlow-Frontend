@@ -56,10 +56,20 @@ cp .env.example .env
 - `npm run preview` — preview the production build
 - `npm test` — run the automated Vitest suite
 - `npm run test:watch` — watch mode for local test development
+- `npm run lighthouse` — run Lighthouse CI against the local preview server
 
 ## Testing
 
 Integration tests cover the send-money form flow, including validation errors and successful transfer submission that lands on the transfers screen.
+
+## Lighthouse CI
+
+Lighthouse checks are configured in [lighthouserc.json](lighthouserc.json) and run in GitHub Actions on pull requests to the main branch. To validate locally, build the app and run:
+
+```bash
+npm run build
+npm run lighthouse
+```
 
 ## Disclaimer
 
