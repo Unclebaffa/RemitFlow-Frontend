@@ -15,6 +15,9 @@ storybook-static
 *.log
 npm-debug.log*
 
+# Lighthouse CI
+.lighthouseci
+
 # Editor
 .vscode/*
 .idea
