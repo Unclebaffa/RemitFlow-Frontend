@@ -17,14 +17,9 @@ The app runs at http://localhost:5173 by default.
 - **Home** — landing page describing the product.
 - **Send Money** — enter a recipient and amount, pick currencies, and see a
   live FX quote with the RemitFlow fee broken out before sending.
-- **Transfers** — paginated list of your transfers with status badges
-  (pending, completed, failed), plus loading, error and empty states. Rows can
-  be selected across pages: a "select all" checkbox picks the current page, and
-  when the whole page is selected an affordance offers to **select all
-  transfers across every page** (or clear the selection).
+- **Transfers** — list of your transfers with status badges (pending,
+  completed, failed), loading, error and empty states, plus touch pull-to-refresh support on mobile lists.
 - **Mock wallet** — connect a demo Stellar wallet (no network calls).
-- **Scroll restoration** — the app remembers your scroll position on each page
-  and restores it automatically when you navigate back or forward.
 
 ## Tech Stack
 
@@ -40,7 +35,7 @@ src/
   components/   reusable UI (Navbar, Footer, QuoteCard, TransferRow, ...)
   pages/        route screens (Home, SendMoney, Transfers, NotFound)
   services/     mock api, wallet, fx and quote logic
-  hooks/        useWallet, useTransfers, useSelection
+  hooks/        useWallet, useTransfers
   context/      AppContext (wallet state)
   utils/        format and validation helpers
   constants/    currencies and fee config
@@ -65,10 +60,7 @@ cp .env.example .env
 
 ## Testing
 
-Integration tests cover the send-money form flow (validation errors and a
-successful submission that lands on the transfers screen) and the transfers
-selection flow, including selecting all rows across pages, keeping that
-selection while paging, and clearing it.
+Integration tests cover the send-money form flow, including validation errors and successful transfer submission that lands on the transfers screen.
 
 ## Lighthouse CI
 
