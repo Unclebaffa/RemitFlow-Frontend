@@ -5,12 +5,15 @@ import ErrorMessage from '../components/ErrorMessage.jsx'
 import EmptyState from '../components/EmptyState.jsx'
 import Button from '../components/Button.jsx'
 import { useTransfers } from '../hooks/useTransfers.js'
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js'
 import './Transfers.css'
 
 /**
  * Transfers page: lists all transfers with their status.
  */
 export default function Transfers() {
+  useDocumentTitle('Your Transfers')
+
   const { transfers, loading, error, reload } = useTransfers()
 
   return (
